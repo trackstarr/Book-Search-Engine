@@ -1,5 +1,6 @@
-import jwt from 'jsonwebtoken';
-import { AuthenticationError } from 'apollo-server-express';
+// import jwt from 'jsonwebtoken';
+// import { AuthenticationError } from 'apollo-server-express';
+import decode from 'jwt-decode';
 
 class AuthService {
  getProfile() {
@@ -36,19 +37,19 @@ class AuthService {
    window.location.assign('/');
  }
 
- getUserFromToken(token) {
-   if (!token) throw new AuthenticationError('You must be logged in!');
+//  getUserFromToken(token) {
+//    if (!token) throw new AuthenticationError('You must be logged in!');
 
-   try {
-     const user = jwt.verify(token, process.env.JWT_SECRET);
-     if (user) {
-       return user;
-     }
-     throw new Error('Invalid token');
-   } catch (err) {
-     throw new Error('Invalid token');
-   }
- }
+//    try {
+//      const user = jwt.verify(token, process.env.JWT_SECRET);
+//      if (user) {
+//        return user;
+//      }
+//      throw new Error('Invalid token');
+//    } catch (err) {
+//      throw new Error('Invalid token');
+//    }
+//  }
 }
 
 export default new AuthService();

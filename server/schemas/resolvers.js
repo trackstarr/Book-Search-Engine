@@ -48,6 +48,7 @@ const resolvers = {
   // user comes from `req.user` created in the auth middleware function
   async saveBook(parent, args, context) {
     try {
+      console.log(context.user);
       const updatedUser = await User.findOneAndUpdate(
         { _id: context.user._id },
         { $addToSet: { savedBooks: args } },
