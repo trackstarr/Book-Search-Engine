@@ -5,8 +5,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-export const getMe = async (token) => {
-  const GET_ME = gql`
+ export const GET_ME = gql`
     query GetMe {
       me {
         _id
@@ -25,10 +24,7 @@ export const getMe = async (token) => {
     }
   `;
 
-  const { data } = await client.query({ query: GET_ME, context: { headers: { authorization: `Bearer ${token}` } } });
-  return data;
-};
-
+  
 export const createUser = async (userData) => {
   const CREATE_USER = gql`
     mutation CreateUser($username: String!, $email: String!, $password: String!) {

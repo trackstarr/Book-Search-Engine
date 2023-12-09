@@ -31,12 +31,15 @@ const resolvers = {
   // login a user, sign a token, and send it back (to client/src/components/LoginForm.js)
   // {body} is destructured req.body
   async login(parent, args, context) {
+  
     const user = await User.findOne({ $or: [{ username: args.username }, { email: args.email }] });
+    console.log("what", user);
     if (!user) {
       throw AuthenticationError;
     }
 
     const correctPw = await user.isCorrectPassword(args.password);
+    console.log("correctPw", correctPw);
 
     if (!correctPw) {
       throw AuthenticationError;

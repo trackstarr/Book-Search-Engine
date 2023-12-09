@@ -33,11 +33,13 @@ const LoginForm = () => {
 
      
 
-      const { token, user } = response.data.loginUser;
+      const { token, user } = response.data.login;
       console.log(user);
       Auth.login(token);
     } catch (err) {
+      
       console.error(err);
+
       setShowAlert(true);
     }
 
